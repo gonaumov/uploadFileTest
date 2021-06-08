@@ -1,0 +1,33 @@
+<html>
+
+<head>
+    <title>Express</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+<h1>Express</h1>
+<p>Welcome to Express</p>
+<script>
+    function testSubmit() {
+        const formData = new FormData();
+        const fileField = document.querySelector('input[type="file"]');
+        formData.append('file', fileField.files[0]);
+        fetch('http://localhost:3000/', {
+            method: 'POST',
+            body: formData
+        }).then(result => {
+                console.log('Success:', result);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+</script>
+<form method="post" id="myForm" enctype="multipart/form-data">
+    <input type="file">
+    <input type="button" value="Test upload" onclick="testSubmit()">
+</form>
+</body>
+
+</html>
